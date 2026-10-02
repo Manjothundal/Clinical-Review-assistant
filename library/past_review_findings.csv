@@ -1,0 +1,39 @@
+Source row,Area,Finding,Check family,Engine,Check
+2,OMAS,Two T1 administrations skip the 72-hour OMAS assessment while a dosing-site lesion was still active,missing_assessment,code,checks_data.missing_visit_for_some_subjects
+3,OMAS,Three OMAS assessments are missing from both listings and from Tables 12-8 and 12-9,records_in_one_output_only,code,checks_across.records_in_one_output_only
+4,PD,"Whole PD administrations dropped for one missing pre-dose value, against SAP Section 9.3",sap_rule_not_followed,model,checks_sap.exclusion_rule_vs_sap
+5,PK,"Primary endpoint success against Treatment T1 is never assessed, and Treatment T2 fails it",endpoint_not_assessed,model,checks_sap.every_comparison_in_sap_present
+6,PK,"Ten administrations are missing from the baseline-corrected isobutyric acid outputs, with no reason given",records_dropped_silently,code,checks_across.n_consistent_across_outputs
+7,PK,Listing 16.2.3 says no PK exclusions while 10 administrations are excluded,listing_contradicts_table,code,checks_across.exclusion_applied_consistently
+8,PK,Excluded-subject isobutyric acid figures carry study AQ109301 and protocol 2022-5310,wrong_study_or_protocol,code,checks_across.study_and_protocol_consistent
+9,Safety-AE,"Table 12-3 says it counts events, but every value counts administrations",title_vs_unit_of_count,code+,checks_output.title_vs_unit_of_count
+10,Safety-Core,"Vital signs and ECG change from baseline use one Period 1 baseline, not the SAP per-period baseline",baseline_rule_vs_sap,model,checks_sap.baseline_definition
+11,Safety-Lab,"Urinalysis means cover only the abnormal results, so the denominator runs 2 to 12 instead of 48",denominator_wrong,code,checks_output.denominator_vs_population
+12,Cross-cutting,"No PK or PD output carries a program path, a version or a run date",no_program_provenance,code,checks_output.source_line_present
+13,Human Factors,Table 12-7 has no Source line,no_source_line,code,checks_output.source_line_present
+14,OMAS,Three OMAS records in 16.2.8.7 have a missing treatment and sort above the subject's pre-dose record,missing_key_variable,code,checks_data.missing_key_variable
+15,OMAS,Table 12-9 counts a pre-dose erythema again in its 4-hour and 6-hour rows,predose_counted_postdose,code,checks_data.predose_finding_recounted
+16,PD,TEmax maxima run past the 60-minute window named in the table title,title_range_vs_values,code,checks_output.title_range_vs_values
+17,PD,The three PD exclusion listings print raw values under a baseline-corrected title,duplicate_title,code,checks_across.duplicate_titles
+18,PK,"Subject counts fall at one partial AUC window and return at the next, including primary AUC0-45min",count_dips_and_returns,code,checks_output.counts_dip_and_return
+19,PK,"Diisobutyryl epinephrine parameter table, parameter listing and all figures are missing",output_missing_vs_shells,code,checks_shells.outputs_present_vs_shells
+20,PK,Isobutyric acid exclusion is not applied to the other four PK concentration outputs,exclusion_not_applied,code,checks_across.exclusion_applied_consistently
+21,PK,Primary AUC0-45min success call compares 23 T2 subjects against 24 R subjects,unpaired_crossover,code,checks_output.paired_comparison_same_n
+22,PK,Four mean epinephrine figure sets declare a subject count the concentration table contradicts,figure_n_vs_table_n,code,checks_across.n_consistent_across_outputs
+23,PK,Primary endpoint table states the success rule but never applies it,rule_stated_not_applied,code+,checks_output.rule_stated_not_applied
+24,PK,Isobutyric acid listing prints the Baseline column to 4 significant digits,too_many_significant_digits,code,checks_output.decimals_vs_spec
+25,Safety-AE,"Table 12-3 states no denominator, gives no subject counts and no treatment split",no_denominator,code,checks_output.percent_without_denominator
+26,Safety-AE,Table 12-3 has no treatment columns and never states that it excludes Treatment R,no_treatment_split,code+,checks_output.treatment_columns_present
+27,Safety-AE,Subjects 14 and 16 show Duration Unknown but an exact Time From Dosing,contradictory_fields,code,checks_data.contradictory_fields
+28,Safety-AE,"Subject 03 haemoglobin event carries outcome NV, a code no footnote defines",undefined_code,code,checks_output.undefined_code_in_column
+29,Safety-AE,Table 12-3 defines neither its percentage denominator nor its two categories,category_not_defined,code+,checks_output.percent_without_denominator
+30,Safety-Core,"PD exclusion listing has no footer, and its treatment column does not name the excluded treatment",no_footer,code,checks_output.source_line_present
+31,Safety-Core,"BMI is listed and summarised as a whole number, so the reported range is wrong",integer_only_column,code,checks_output.integer_only_column
+32,Safety-Core,"Two ECG heart rates contradict the RR interval printed beside them, and one sits in the baseline",value_contradicts_value,code,checks_data.derived_value_disagrees
+33,Safety-Core,"Disintegration time is not one value per administration - four for one administration, none for two",wrong_records_per_unit,code,checks_data.records_per_unit
+34,Safety-Core,"No Period 1 administration has a 360-minute temperature, and no footnote says so",timepoint_never_collected,code,checks_data.missing_visit_for_some_subjects
+35,Safety-Core,Appendix 16.2.5.3 carries a bare program name with no path and no version,bare_program_name,code,checks_output.program_has_path_and_version
+36,Safety-Lab,A vital signs footnote sits on five laboratory and electrocardiogram tables and leaves their reduced counts unexplained,footnote_wrong_domain,code+,checks_output.footnote_matches_domain
+37,Safety-Lab,"Basophil and eosinophil percent change is computed on fewer subjects, and the table carries no footnote",n_drops_no_footnote,code,checks_output.counts_dip_and_return
+38,Safety-Lab,"The 10 less-than and greater-than specific gravity results are excluded at End-of-Study, so the mean reads high",censored_values_dropped,code,checks_data.censored_values_dropped
+39,Safety-Lab,One-decimal rounding erases the hematocrit and specific gravity results,rounding_erases_result,code,checks_output.decimals_vs_spec

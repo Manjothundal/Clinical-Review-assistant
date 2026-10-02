@@ -1,0 +1,14 @@
+# Everything the app needs. Install with:  pip install -r requirements.txt
+
+pandas>=2.0            # tables
+numpy>=1.24            # numbers
+pyreadstat>=1.2        # reads SAS .xpt and .sas7bdat files
+openpyxl>=3.1          # reads specs, writes the Excel findings sheet
+streamlit>=1.40        # the app screen
+pytest>=7.4            # runs the tests
+
+# Optional. Only needed to read a SAP or mock shells saved as PDF.
+# Word (.docx) and text files need nothing extra.
+# pypdf>=4.0
+
+# No openai or anthropic package: the app calls the APIs with plain Python.

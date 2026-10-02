@@ -1,0 +1,12 @@
+.env
+out/
+data/
+outputs/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+START_HERE.pdf
+studies/
+studies/*/agent.json
